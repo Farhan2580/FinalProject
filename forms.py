@@ -1,14 +1,14 @@
 from django import forms
-from .models import Donor
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 
-class DonorForm(forms.ModelForm):
+class SignupForm(UserCreationForm):
     class Meta:
-        model = Donor
-        fields = [
-            "blood_group",
-            "quantity",
-            "when_needed",
-            "contact_number",
-            "description",
-        ]
+        model = User
+        fields = ['username', 'password1', 'password2']
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)
